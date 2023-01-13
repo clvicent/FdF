@@ -10,16 +10,17 @@ SOURCES =   main.c \
 			utils.c \
 			input_utils.c \
 			tools.c \
+			tools_2.c \
+			tools_3.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 			ft_split.c \
-			tools_2.c \
 			shades_and_color.c \
-			hooks.c \
 			printf.c \
 			printf_2.c \
 			printf_3.c \
-			bresenham.c
+			bresenham.c \
+			tools_4.c
 
 SRCS = $(addprefix $(DIR_S),$(SOURCES))
 
@@ -39,6 +40,16 @@ norme:
 	norminette	./$(HEADER)
 	@echo
 	norminette	./$(DIR_S)
+
+val:
+	make -s -j all
+	valgrind				\
+		--show-leak-kinds=all	\
+		--track-origins=yes		\
+		--leak-check=full		\
+		./\$(NAME) maps/test5.fdf
+		
+#./\$(NAME) maps/test5.fdf
 
 bonus: all
 

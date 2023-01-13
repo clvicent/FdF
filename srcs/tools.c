@@ -6,12 +6,12 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:20:09 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/09 19:37:50 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:18:45 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#if 0
 void	ft_grid(t_fdf *f)
 {
 	int	y;
@@ -31,7 +31,29 @@ void	ft_grid(t_fdf *f)
 	}
 	free_tab(f->tab, f->m.size_y);
 }
+#else
+void	ft_grid(t_fdf *f)
+{
+	int	y;
+	int	x;
 
+	x = 0;
+	while (x < 1920)
+	{
+		y = 0;
+		while (y < 1080)
+		{
+			if (is_in_grid(x, y, f) == 1)
+				bresenham(f, x, y);
+			if (is_in_grid(x, y, f) != 0)
+				bresenham(f, x, y);
+			y++;
+		}	
+		x++;
+	}
+	free_tab(f->tab, f->m.size_y);
+}
+#endif
 void	set_alt(t_fdf *f)
 {
 	int	x;

@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:12:29 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/09 19:29:12 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:24:46 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	input_maker(t_fdf *f)
 	f->tab = malloc(sizeof(int *) * f->m.size_y);
 	if (f->tab == NULL)
 		return (1);
-	while (f->str && f->str[i])
+	while (y < f->m.size_y)
 	{
 		x = 0;
 		f->tab[y] = malloc(sizeof(int) * f->m.size_x);
@@ -100,5 +100,6 @@ int	input_maker(t_fdf *f)
 		y++;
 	}
 	free(f->str);
+	//printab(f);
 	return (0);
 }

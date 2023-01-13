@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   tools_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:40:48 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/09 21:10:08 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:41:29 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	ft_init(t_fdf *f, char *filename)
 {
-	t_data	*img = &f->img;
+	t_data	*img;
 
+	img = &f->img;
 	ft_bzero(&f->m, sizeof(t_math));
+	ft_bzero(&f->l, sizeof(t_line));
 	f->fd = open(filename, O_RDONLY);
 	f->scx = 1920;
 	f->scy = 1080;
@@ -29,8 +31,6 @@ void	ft_init(t_fdf *f, char *filename)
 void	shut_fdf(t_fdf *f, char *message)
 {
 	printf("%s", message);
-	// if (f->tab)
-	// 	free
 	mlx_destroy_image(f->mlx, f->img.img_ptr);
 	mlx_destroy_window(f->mlx, f->win);
 	mlx_destroy_display(f->mlx);
@@ -63,4 +63,11 @@ void	free_tab(int **tab, const int ylen)
 	}
 	free(tab);
 	tab = NULL;
+}
+
+int		ft_abs(int i)
+{
+	if (i < 0)
+		i = -i;
+	return (i); 
 }

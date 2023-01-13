@@ -6,12 +6,13 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:55:21 by clvicent          #+#    #+#             */
-/*   Updated: 2022/12/19 12:16:47 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/13 14:35:52 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+#if 0
 int	is_in_grid(int x, int y, t_fdf *f)
 {
 	if (x < f->m.start_x || y < f->m.start_y)
@@ -24,11 +25,27 @@ int	is_in_grid(int x, int y, t_fdf *f)
 			return (0);
 	return (1);
 }
-
+#else
+int	is_in_grid(int x, int y, t_fdf *f)
+{
+	if (x < f->m.start_x || x > (f->scx - f->m.start_x) ||
+		y < f->m.start_y || y > (f->scy - f->m.start_y))
+		return (0);
+	if ((x - f->m.start_x) == 0 && (y - f->m.start_y) == 0)
+		return (1);
+	if ((x - f->m.start_x) == 0)
+		if ((y - f->m.start_y) % f->m.size_p_y == 0)
+			return (2);
+	if ((y - f->m.start_y) == 0)
+		if ((x - f->m.start_x) % f->m.size_p_x == 0)
+			return (3);
+	return (0);
+}
+#endif
 void	struct_filler(t_fdf *f)
 {	
-		f->m.start_x = (f->scx - f->m.size_p_x * (f->m.size_x - 1)) / 2;
-		f->m.start_y = (f->scy - f->m.size_p_y * (f->m.size_y - 1)) / 2;	
+	f->m.start_x = (f->scx - f->m.size_p_x * (f->m.size_x - 1)) / 2;
+	f->m.start_y = (f->scy - f->m.size_p_y * (f->m.size_y - 1)) / 2;
 }
 
 int	color_maker(t_fdf *f, int x, int y)
