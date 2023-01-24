@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:55:21 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/13 14:35:52 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:56:29 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ int	is_in_grid(int x, int y, t_fdf *f)
 #else
 int	is_in_grid(int x, int y, t_fdf *f)
 {
-	if (x < f->m.start_x || x > (f->scx - f->m.start_x) ||
-		y < f->m.start_y || y > (f->scy - f->m.start_y))
+	if (x < f->m.start_x || x > (f->scx + 1 - f->m.start_x) ||
+		y < f->m.start_y || y > (f->scy + 1 - f->m.start_y))
 		return (0);
 	if ((x - f->m.start_x) == 0 && (y - f->m.start_y) == 0)
-		return (1);
+		return (START);
+	if (x == (f->scx - f->m.start_x) && y == (f->scy - f->m.start_y))
+		return (END);
 	if ((x - f->m.start_x) == 0)
 		if ((y - f->m.start_y) % f->m.size_p_y == 0)
-			return (2);
+			return (S_LINE);
 	if ((y - f->m.start_y) == 0)
 		if ((x - f->m.start_x) % f->m.size_p_x == 0)
-			return (3);
+			return (S_COL);
 	return (0);
 }
 #endif

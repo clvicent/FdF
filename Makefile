@@ -47,7 +47,7 @@ val:
 		--show-leak-kinds=all	\
 		--track-origins=yes		\
 		--leak-check=full		\
-		./\$(NAME) maps/test5.fdf
+		./\$(NAME) maps/test2.fdf
 		
 #./\$(NAME) maps/test5.fdf
 

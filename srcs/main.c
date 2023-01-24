@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:57:29 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/13 18:28:27 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:11:28 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ int	key_press(int keycode, t_fdf *f)
 	exit (0);
 }
 
-void	print_param(t_math *m)
-{
-	printf("index_x = %d\n", m->index_x);
-	printf("index_y = %d\n", m->index_y);
-	printf("size_x = %d\n", m->size_x);
-	printf("size_p_x = %d\n", m->size_p_x);
-	printf("size_y = %d\n", m->size_y);
-	printf("size_p_y = %d\n", m->size_p_y);
-	// printf("max_alt = %d\n", m->max_alt);
-	// printf("min_alt = %d\n", m->min_alt);
-	printf("start_x = %d\n", m->start_x);
-	printf("start_y = %d\n", m->start_y);
-	// printf("alt_0 = %d\n", m->alt_0);
-	// printf("next_alt = %d\n", m->next_alt);
-	// printf("c_alt = %d\n", m->c_alt);
-	// printf("flag = %d\n", m->flag);
-}
+// void	print_param(t_math *m)
+// {
+// 	printf("index_x = %d\n", m->index_x);
+// 	printf("index_y = %d\n", m->index_y);
+// 	printf("size_x = %d\n", m->size_x);
+// 	printf("size_p_x = %d\n", m->size_p_x);
+// 	printf("size_y = %d\n", m->size_y);
+// 	printf("size_p_y = %d\n", m->size_p_y);
+// 	// printf("max_alt = %d\n", m->max_alt);
+// 	// printf("min_alt = %d\n", m->min_alt);
+// 	printf("start_x = %d\n", m->start_x);
+// 	printf("start_y = %d\n", m->start_y);
+// 	// printf("alt_0 = %d\n", m->alt_0);
+// 	// printf("next_alt = %d\n", m->next_alt);
+// 	// printf("c_alt = %d\n", m->c_alt);
+// 	// printf("flag = %d\n", m->flag);
+// }
 #if 1
 int	main(int ac, char **av)
 {
@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 	struct_filler(&f);
 	input_maker(&f);
 	set_alt(&f);
-	print_param(&f.m);
+	// print_param(&f.m);
 	ft_grid(&f);
 	mlx_put_image_to_window(f.mlx, f.win, f.img.img_ptr, 0, 0);
 	mlx_key_hook(f.win, key_press, &f);

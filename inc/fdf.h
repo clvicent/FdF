@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/13 17:36:43 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:59:04 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # define LOG    printf("%s:%d %s()\n", __FILE__,__LINE__, __FUNCTION__);
 # define DEBUG 1
 # define PAUSE    if (DEBUG) {getchar();};
+
+# define SCX 1920
+# define SCY 1080
+# define START 1
+# define END 4
+# define S_LINE 2
+# define S_COL 3
 
 # include "../mlx_linux/mlx.h"
 # include "get_next_line.h"

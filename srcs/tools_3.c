@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 20:40:48 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/10 16:41:29 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:59:20 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_init(t_fdf *f, char *filename)
 	ft_bzero(&f->m, sizeof(t_math));
 	ft_bzero(&f->l, sizeof(t_line));
 	f->fd = open(filename, O_RDONLY);
-	f->scx = 1920;
-	f->scy = 1080;
+	f->scx = SCX;
+	f->scy = SCY;
 	f->mlx = mlx_init();
 	f->win = mlx_new_window(f->mlx, f->scx, f->scy, "fdf");
 	img->img_ptr = mlx_new_image(f->mlx, f->scx, f->scy);
