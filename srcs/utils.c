@@ -5,75 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 12:39:35 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/11 18:19:30 by clvicent         ###   ########.fr       */
+/*   Created: 2023/01/30 17:42:48 by clvicent          #+#    #+#             */
+/*   Updated: 2023/02/14 19:00:28 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->length + x * (img->bpp / 8));
-	*(unsigned int *) dst = color;
+void	struct_filler(t_fdf *f)
+{	
+	int	delta_x;
+	int	delta_y;
+	
+	delta_x = (f->m.size_x + f->m.size_y) * f->l.half_width;
+	delta_y = (f->m.size_x + f->m.size_y) * f->l.half_height;
+	f->m.start_x = (f->scx - f->m.size_p_x * (f->m.size_x - 1)) / 2;
+	f->m.start_y = (f->scy - f->m.size_p_y * (f->m.size_y - 1)) / 2;
+	f->l.true_x = ((f->scx - delta_x) / 2) + (f->m.size_y * f->l.half_width);
+	f->l.true_y = ((f->scy - delta_y) / 2);
 }
 
-int	get_rgb(int r, int g, int b)
+void	set_alt(t_fdf *f)
 {
-	int	rgb;
+	int	x;
+	int	y;
 
-	rgb = r;
-	rgb = (rgb << 8) + g;
-	rgb = (rgb << 8) + b;
-	return (rgb);
-}
-
-void	l_c_size(t_fdf *f)
-{
-	f->m.size_p_x = (f->scx - 1) / f->m.size_x;
-	f->m.size_p_y = (f->scy - 1) / f->m.size_y;
-	if (f->m.size_p_x > f->m.size_p_y)
-		f->m.size_p_x = f->m.size_p_y;
-	else
-		f->m.size_p_y = f->m.size_p_x;
-}
-
-int	width_and_length(t_fdf *f)
-{
-	char	*line;
-
-	line = NULL;
-	f->str = get_next_line(f->fd);
-	if (f->str == NULL)
-		return (-1);
-	else
-		f->m.size_y = 1;
-	f->m.size_x = get_n_col(f->str);
-	while (1)
+	y = 0;
+	f->m.min_alt = f->tab[0][0];
+	f->m.max_alt = f->tab[0][0];
+	while (y < f->m.size_y)
 	{
-		line = get_next_line(f->fd);
-		if (line == NULL || input_checker(line) == 1)
-			return (0);
-		f->m.size_y++;
-		if (f->m.size_x != get_n_col(line))
-			return (-1);
-		f->str = ft_strjoin(f->str, line);
-		free(line);
+		x = 0;
+		while (x < f->m.size_x)
+		{
+			if (f->m.min_alt > f->tab[y][x])
+				f->m.min_alt = f->tab[y][x];
+			if (f->m.max_alt < f->tab[y][x])
+				f->m.max_alt = f->tab[y][x];
+			x++;
+		}
+		y++;
 	}
-	return (0);
-}
-
-int	get_n_col(char *str)
-{
-	int		i;
-	char	**strs;
-
-	i = 0;
-	strs = ft_split(str, ' ');
-	while (strs[i])
-		i++;
-	ft_exit(strs);
-	return (i);
+	if (f->m.min_alt >= 0)
+		f->m.alt_0 = f->m.min_alt;
+	if (f->m.max_alt <= 0)
+		f->m.alt_0 = f->m.max_alt;
+	f->l.zoom = get_zoom(f);
 }

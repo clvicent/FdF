@@ -5,12 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:57:29 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/24 19:11:28 by clvicent         ###   ########.fr       */
+/*   Created: 2023/01/27 15:30:07 by clvicent          #+#    #+#             */
+/*   Updated: 2023/02/14 18:48:29 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	shut_fdf(t_fdf *f, char *message)
+{
+	printf("%s", message);
+	mlx_destroy_image(f->mlx, f->img.img_ptr);
+	mlx_destroy_window(f->mlx, f->win);
+	mlx_destroy_display(f->mlx);
+	free(f->mlx);
+}
 
 int	exit_cross(t_fdf *f)
 {
@@ -27,68 +36,45 @@ int	key_press(int keycode, t_fdf *f)
 	exit (0);
 }
 
-// void	print_param(t_math *m)
-// {
-// 	printf("index_x = %d\n", m->index_x);
-// 	printf("index_y = %d\n", m->index_y);
-// 	printf("size_x = %d\n", m->size_x);
-// 	printf("size_p_x = %d\n", m->size_p_x);
-// 	printf("size_y = %d\n", m->size_y);
-// 	printf("size_p_y = %d\n", m->size_p_y);
-// 	// printf("max_alt = %d\n", m->max_alt);
-// 	// printf("min_alt = %d\n", m->min_alt);
-// 	printf("start_x = %d\n", m->start_x);
-// 	printf("start_y = %d\n", m->start_y);
-// 	// printf("alt_0 = %d\n", m->alt_0);
-// 	// printf("next_alt = %d\n", m->next_alt);
-// 	// printf("c_alt = %d\n", m->c_alt);
-// 	// printf("flag = %d\n", m->flag);
-// }
-#if 1
+void	ft_init(t_fdf *f)
+{
+	t_data	*img;
+	
+	img = &f->img;
+	f->m.size_x = 0;
+	ft_bzero(&f->m, sizeof(t_math));
+	ft_bzero(&f->l, sizeof(t_line));
+	f->scx = SCX;
+	f->scy = SCY;
+	f->mlx = mlx_init();
+	f->win = mlx_new_window(f->mlx, f->scx, f->scy, "fdf");
+	img->img_ptr = mlx_new_image(f->mlx, f->scx, f->scy);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->length, &img->endian);
+}
+
 int	main(int ac, char **av)
 {
 	t_fdf	f;
 
 	if (ac != 2)
 	{
-		printf("Usage : ./fdf <filename.fdf>\n");
+		ft_putstr_fd("Usage : ./fdf <filename.fdf>\n", 1);
 		return (1);
 	}
-	ft_init(&f, av[1]);
-	if (-1 == width_and_length(&f))
+	ft_init(&f);
+	if (-1 == width_and_length(&f, av[1]))
 	{
-		printf("file is empty\n");
+		ft_putstr_fd("file is empty\n", 1);
 		return (1);
 	}
 	l_c_size(&f);
 	struct_filler(&f);
-	input_maker(&f);
 	set_alt(&f);
-	// print_param(&f.m);
 	ft_grid(&f);
+	printf("size x = %d\n", f.m.size_x);
+	printf("size y = %d\n", f.m.size_y);
 	mlx_put_image_to_window(f.mlx, f.win, f.img.img_ptr, 0, 0);
 	mlx_key_hook(f.win, key_press, &f);
 	mlx_hook(f.win, 17, 1L << 0, exit_cross, &f);
 	mlx_loop(f.mlx);
 }
-#else
-int	main(int ac, char **av)
-{
-	t_fdf	f;
-
-	(void)ac;
-	ft_init(&f, av[1]);
-	data_l(&f, 10, 10, 1900, 1000);
-	data_l(&f, 1860, 900, 20, 20);
-	data_l(&f, 1919, 0, 1919, 950);
-	data_l(&f, 0, 1000, 1920, 1000);
-	data_l(&f, 500, 500, 250, 250);
-	data_l(&f, 250, 500, 500, 250);
-	// data_l(&f, 0, 0, 1920, 1080);
-	// data_l(&f, 0, 0, 1920, 1080);
-	mlx_put_image_to_window(f.mlx, f.win, f.img.img_ptr, 0, 0);
-	mlx_key_hook(f.win, key_press, &f);
-	mlx_hook(f.win, 17, 1L << 0, exit_cross, &f);
-	mlx_loop(f.mlx);
-}
-#endif

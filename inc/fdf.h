@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/24 19:59:04 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:56:42 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@
 # define DEBUG 1
 # define PAUSE    if (DEBUG) {getchar();};
 
-# define SCX 1920
-# define SCY 1080
-# define START 1
-# define END 4
-# define S_LINE 2
-# define S_COL 3
+# define SCX 2560
+# define SCY 1440
+# define OK 1
+# define END 2
 
+# include "libft.h"
 # include "../mlx_linux/mlx.h"
-# include "get_next_line.h"
-# include "printf.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include <math.h>
 # include <fcntl.h>
 
 typedef struct s_data {
@@ -49,6 +47,12 @@ typedef struct s_line {
 	int	sx;
 	int	sy;
 	int	flag;
+	int	true_x;
+	int	true_y;
+	int seg_len;
+	int	half_height;
+	int	half_width;
+	int zoom;
 }	t_line;
 
 typedef struct s_math {
@@ -60,8 +64,6 @@ typedef struct s_math {
 	int		size_p_y;
 	int		start_x;
 	int		start_y;
-	int		r_start_x;
-	int		r_start_y;
 	int		max_alt;
 	int		min_alt;
 	int		alt_0;
@@ -83,62 +85,43 @@ typedef struct s_fdf {
 	t_math	m;
 }	t_fdf;
 
-//tools.c
-int		is_in_grid(int c_x, int c_y, t_fdf *f);
-int		color_maker(t_fdf *f, int x, int y);
-void	struct_filler(t_fdf *f);
-int		final_color(int x, int y, float ratio, t_fdf *f);
-int		next_color(t_fdf *f, char c);
-
-
-//utils
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
-int 	get_rgb(int r, int g, int b);
-int		width_and_length(t_fdf *f);
-int		get_n_col(char *str);
-void	l_c_size(t_fdf *f);
-
-// input_utils
-int		input_checker(char *str);
-int		ft_isdigit(char c);
-int		input_maker(t_fdf *f);
-int		ft_atoi(const char *str);
-int		how_many_d(char *str);
-
-//tools_2.c
-void	set_alt(t_fdf *f);
-int		prev_color(t_fdf *f);
+//grid_tools.c
 void	ft_grid(t_fdf *f);
+int		is_in_grid(int x, int y, t_fdf *f);
+void	l_c_size(t_fdf *f);
+int		width_and_length(t_fdf *f, char *file);
+int		get_n_col(char **str);
+
+//utils.c
+void	set_alt(t_fdf *f);
+void	struct_filler(t_fdf *f);
+
+//display_tools.c
+int		get_zoom(t_fdf *f);
+void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
 void	set_pix(t_fdf *f, int x, int y);
+int		get_rgb(int r, int g, int b);
+
+//tab_tools.c
 void	get_pos(int x, int y, t_fdf *f);
 
-//ft_split
-char	**ft_split(char const *s, char c);
-char	**ft_exit(char **strs);
-
-// shades_and_color.c
-int		shade_zero(t_fdf *f, int color);
-int		splitter(int color, int flag);
-int 	reg_shader(int prev, int next, float ratio);
-int		ex_shader(int x, int y, t_fdf *f);
-int		x_y(int x, int y, t_fdf *f);
-
-// tools_3.c
-void	ft_init(t_fdf *f, char *filename);
-void	shut_fdf(t_fdf *f, char *message);
-void    ft_bzero(void *s, size_t n);
-void	free_tab(int **tab, const int ylen);
-int		ft_abs(int i);
-
-// bresenham.c
+//drawing_tools.c
+void	draw_grid(int x, int y, t_fdf *f);
+void	get_coord(int x, int y, t_fdf *f);
+void	bresenham(t_fdf *f);
 void	draw_line(t_fdf *f, t_line *l);
-void	bresenham(t_fdf *f, int x, int y);
-void	get_start_end(t_fdf *f, t_line *l, int x, int y);
-int		get_xdest(int x, int y, t_fdf *f);
-int		get_ydest(int x, int y, t_fdf *f);
+int		get_len(t_fdf *f);
 
-void	printab(t_fdf *f);
+//color_tools.c
+int		ex_shader(int x_y, int next, t_fdf *f);
+int		reg_shader(int prev, int next, float ratio);
+int		splitter(int color, int flag);
+int		shade_zero(t_fdf *f, int color);
+int		prev_color(t_fdf *f);
 
-void	print_param(t_math *m);
+//colors.c
+int		color_maker(t_fdf *f);
+int		final_color(float ratio, t_fdf *f);
+int		next_color(t_fdf *f);
 
 #endif
