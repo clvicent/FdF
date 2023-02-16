@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 11:31:56 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/14 18:00:08 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:05:50 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include	<stddef.h>
 # include	<stdarg.h>
 # include	<unistd.h>
-# include	<stdio.h>
 
 typedef struct s_list
 {
@@ -64,7 +63,6 @@ char	*ft_strdup(const char *s);
 int		ft_putstr(char *s);
 int		ft_putchar(char c);
 
-
 // BONUS
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **alst, t_list *new);
@@ -84,7 +82,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
 int		get_file_len(char *filename);
 
-
 // printf
 int		ft_putnbr_base(unsigned int n, char *b);
 int		ft_putnbr(int i);
@@ -97,12 +94,14 @@ int		ft_get_char(const char *s, char c);
 int		get_index(char *s);
 void	ft_print_bits(char c);
 void	free_tab(int **tab, const int ylen);
-char	**ft_exit(char **strs); // free(**strs) + exit
-int		**ft_gen_tab(int xlen, int ylen, int value); //tab de y par x set a value
-void	ft_set_tab(int xlen, int ylen, int **tab, int value); //set sur tout x/y la value
-void	tab_filler(int **tab, char **data, int index); // rempli le tab[index] avec les valeur en **data
+char	**ft_exit(char **strs);
+int		**ft_gen_tab(int xlen, int ylen, int value);
+void	ft_set_tab(int xlen, int ylen, int **tab, int value);
+void	tab_filler(int **tab, char **data, int index);
 int		ft_putstrs_fd(char **strs, int fd);
 void	printab(int **tab, int ylen, int xlen);
+int		ft_strslen(char **strs);
+int		check_ext(char *str, char *ext);
 
 // MATH
 int		ft_abs(int i);

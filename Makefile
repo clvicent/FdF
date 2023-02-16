@@ -2,11 +2,13 @@ CC = clang
 
 NAME = fdf
 
-DIR_S = srcs/
+DIR_S = srcs
+DIR_O = obj
+HEADER = inc/
+RM = rm -rf
 
 LIBFT = libft
-
-HEADER = inc/
+MLX = mlx_linux
 
 SOURCES =   main.c \
 			display_tools.c \
@@ -17,9 +19,9 @@ SOURCES =   main.c \
 			colors.c \
 			color_tools.c
 
-SRCS = $(addprefix $(DIR_S),$(SOURCES))
+SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 CFLAGS = -g3 -Wall -Werror -Wextra -I $(HEADER)
 
@@ -29,8 +31,14 @@ LFLAGS = -L $(LIBFT) -lft
 
 all: $(NAME)
 
+$(OBJS) : $(DIR_O)/%.o : $(DIR_S)/%.c
+		@mkdir -p $(dir $@)
+# $(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+
 $(NAME): $(OBJS) $(HEADER)
-	@ make -C $(LIBFT)
+	@make -C $(LIBFT)
+	@make -C $(MLX)
 	$(CC)	$(CFLAGS)	$(OBJS)	$(MFLAGS) $(LFLAGS) -o	$(NAME)
 
 norme:
@@ -45,17 +53,20 @@ val:
 		--show-leak-kinds=all	\
 		--track-origins=yes		\
 		--leak-check=full		\
-		./\$(NAME) maps/test2.fdf
+		./\$(NAME) maps/maps_test/42.fdf
 		
 #./\$(NAME) maps/test5.fdf
 
 bonus: all
 
 clean:
-	@rm -f $(OBJS)
-	@make fclean -C $(LIBFT)
+	$(RM) $(DIR_O)
+	@make clean -C $(MLX)
+	@make clean -C $(LIBFT)
 
 fclean: clean
-	@rm -f $(NAME)
+	$(RM) $(NAME)
+	@make clean -C $(MLX)
+	@make fclean -C $(LIBFT)
 
 re: fclean all

@@ -6,15 +6,15 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:33:31 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 14:33:53 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:35:20 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_get_char(const char *s, char c)
+int	ft_get_char(const char *s, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != c && s[i])

@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 11:35:12 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 18:22:18 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:03:51 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ char	**ft_exit(char **strs)
 
 	i = -1;
 	while (strs[++i] != NULL)
-		free(strs[i]);
+		if (strs[i])
+			free(strs[i]);
 	free(strs);
 	return (NULL);
 }
@@ -112,6 +113,5 @@ char	**ft_split(char const *s, char c)
 			j++;
 		i++;
 	}
-	strs[i] = 0;
 	return (strs);
 }

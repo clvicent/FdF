@@ -6,16 +6,16 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/14 18:56:42 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:26:44 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define LOG    printf("%s:%d %s()\n", __FILE__,__LINE__, __FUNCTION__);
-# define DEBUG 1
-# define PAUSE    if (DEBUG) {getchar();};
+// # define LOG    printf("%s:%d %s()\n", __FILE__,__LINE__, __FUNCTION__);
+// # define DEBUG 1
+// # define PAUSE    if (DEBUG) {getchar();};
 
 # define SCX 2560
 # define SCY 1440
@@ -25,16 +25,16 @@
 # include "libft.h"
 # include "../mlx_linux/mlx.h"
 # include <stdlib.h>
-# include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct s_data {
-	void 	*img_ptr;
-	char 	*addr;
+	void	*i_p;
+	char	*ad;
 	int		bpp;
-	int		length;
-	int		endian;
+	int		l;
+	int		end;
 }	t_data;
 
 typedef struct s_line {
@@ -43,16 +43,16 @@ typedef struct s_line {
 	int	x1;
 	int	y1;
 	int	dx;
-	int dy;
+	int	dy;
 	int	sx;
 	int	sy;
 	int	flag;
 	int	true_x;
 	int	true_y;
-	int seg_len;
+	int	seg_len;
 	int	half_height;
 	int	half_width;
-	int zoom;
+	int	zoom;
 }	t_line;
 
 typedef struct s_math {
@@ -95,10 +95,13 @@ int		get_n_col(char **str);
 //utils.c
 void	set_alt(t_fdf *f);
 void	struct_filler(t_fdf *f);
+int		close_gnl(int fd);
+int		wl_util(t_fdf *f, char **tmp, char *line, int y);
+void	shut_fdf(t_fdf *f, char *message);
 
 //display_tools.c
 int		get_zoom(t_fdf *f);
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
+void	mlx_pp(t_data *img, int x, int y, int color);
 void	set_pix(t_fdf *f, int x, int y);
 int		get_rgb(int r, int g, int b);
 
@@ -115,7 +118,7 @@ int		get_len(t_fdf *f);
 //color_tools.c
 int		ex_shader(int x_y, int next, t_fdf *f);
 int		reg_shader(int prev, int next, float ratio);
-int		splitter(int color, int flag);
+int		spl(int color, int flag);
 int		shade_zero(t_fdf *f, int color);
 int		prev_color(t_fdf *f);
 

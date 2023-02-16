@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:23:10 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/14 18:53:25 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:56:21 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_grid(t_fdf *f)
 		}	
 		x++;
 	}
-	free_tab(f->tab, f->m.size_y);
 }
 
 int	is_in_grid(int x, int y, t_fdf *f)
@@ -56,12 +55,8 @@ void	l_c_size(t_fdf *f)
 		f->m.size_p_x = f->m.size_p_y;
 	else
 		f->m.size_p_y = f->m.size_p_x;
-	f->l.half_width = f->scx / delta;
-	f->l.half_height = f->scy / delta;
-	printf("delta = %d\n", delta);
-	printf("scx / delta = %d\n", (f->scx / delta));
-	printf("half_height = %d\n", f->l.half_height);
-	printf("half_width = %d\n", f->l.half_width);
+	f->l.half_width = (f->scx - f->scx / 25) / delta;
+	f->l.half_height = (f->scy - f->scy / 25) / delta;
 	if (f->l.half_height * 2 > f->l.half_width)
 		f->l.half_height = f->l.half_width / 2;
 	else
@@ -82,21 +77,16 @@ int	width_and_length(t_fdf *f, char *file)
 	{
 		line = get_next_line(f->fd);
 		if (line == NULL)
-			return (0);
+			return (close(f->fd));
 		tmp = ft_split(line, ' ');
-		if (f->m.size_x == 0)
-		{
-			f->m.size_x = get_n_col(tmp);
-			f->tab = ft_gen_tab(f->m.size_x, f->m.size_y, 0);
-		}
-		else if (f->m.size_x != get_n_col(tmp))
+		if (wl_util(f, tmp, line, y) == -1)
 			return (-1);
 		tab_filler(f->tab, tmp, y);
 		free(line);
 		ft_exit(tmp);
 		y++;
 	}
-	close(f->fd);
+	close_gnl(f->fd);
 	return (0);
 }
 
@@ -105,6 +95,8 @@ int	get_n_col(char **str)
 	int		i;
 
 	i = 0;
+	if (!str)
+		return (-1);
 	while (str[i])
 		i++;
 	return (i);

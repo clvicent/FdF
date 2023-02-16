@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:22:53 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/13 20:15:45 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:01:32 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	bresenham(t_fdf *f)
 void	draw_line(t_fdf *f, t_line *l)
 {
 	int	er;
-	
+
 	er = l->dx + l->dy;
 	while (1)
 	{
@@ -90,17 +90,17 @@ void	draw_line(t_fdf *f, t_line *l)
 	}
 }
 
-int		get_len(t_fdf *f)
+int	get_len(t_fdf *f)
 {
 	float	a;
 	float	b;
 	float	c;
 
-	if(f->l.x1 > f->l.x0)
+	if (f->l.x1 > f->l.x0)
 		a = f->l.x1 - f->l.x0;
 	else
 		a = f->l.x0 - f->l.x1;
-	if(f->l.y1 * f->l.zoom > f->l.y0 * f->l.zoom)
+	if (f->l.y1 * f->l.zoom > f->l.y0 * f->l.zoom)
 		b = f->l.y1 * f->l.zoom - f->l.y0 * f->l.zoom;
 	else
 		b = f->l.y0 * f->l.zoom - f->l.y1 * f->l.zoom;

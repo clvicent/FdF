@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 16:28:04 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/14 17:15:22 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:01:41 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	**ft_gen_tab(int xlen, int ylen, int value)
 		}
 		i++;
 	}
-	ft_set_tab(xlen, ylen, tab, value);
+	if (tab)
+		ft_set_tab(xlen, ylen, tab, value);
 	return (tab);
 }

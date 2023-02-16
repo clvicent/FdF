@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:59:20 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/14 18:38:57 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:36:10 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	printab(int **tab, int ylen, int xlen)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = 0;
 	y = 0;

@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 16:04:47 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 16:18:07 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:34:05 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static char	*ft_read(int fd, char *stc)
 {
 	int		i;
 	char	*buf;
+	char	*tmp;
 
 	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
@@ -67,11 +68,15 @@ static char	*ft_read(int fd, char *stc)
 		i = read(fd, buf, BUFFER_SIZE);
 		if ((i == -1 || i == 0) && !stc[0])
 			return (ft_free(stc, buf, 1));
-		buf[i] = '\0';
+		if (i > 0)
+			buf[i] = '\0';
 		if (i == 0 && stc[0])
 			return (ft_free(stc, buf, 0));
+		tmp = stc;
 		stc = ft_strjoin(stc, buf);
 	}
+	if (tmp)
+		free(tmp);
 	free(buf);
 	return (stc);
 }

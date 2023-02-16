@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:55:12 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 16:22:19 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:32:35 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int	ft_printf(const char *s, ...)
 			i++;
 		}
 	}
+	va_end(params);
 	return (count);
 }
-

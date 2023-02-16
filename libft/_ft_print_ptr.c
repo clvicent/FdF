@@ -6,16 +6,16 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:25:04 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 16:20:15 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:35:56 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_printp(unsigned long long n, char *b) // p
+static int	ft_printp(unsigned long long n, char *b)
 {
 	unsigned long long	s;
-	int                 i;
+	int					i;
 
 	s = (unsigned long long)ft_strlen(b);
 	i = 0;
@@ -41,5 +41,5 @@ int	ft_print_ptr(void *p)
 		return (3);
 	}
 	write(1, "0x", 2);
-	return(2 + ft_printp((unsigned long long)p, "0123456789abcdef"));
+	return (2 + ft_printp((unsigned long long)p, "0123456789abcdef"));
 }

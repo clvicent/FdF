@@ -6,24 +6,19 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:30:18 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 17:32:56 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:58:27 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_tab(int **tab, const int ylen)
+void	free_tab(int **tab, int ylen)
 {
-	int	y;
-
 	if (!tab)
 		return ;
-	y = 0;
-	while (y < ylen)
-	{
-		free(tab[y]);
-		y++;
-	}
+	while (--ylen >= 0)
+		if (tab[ylen])
+			free(tab[ylen]);
 	free(tab);
 	tab = NULL;
 }

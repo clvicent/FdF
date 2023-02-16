@@ -6,12 +6,11 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:29:21 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/13 19:16:44 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:00:42 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 void	get_pos(int x, int y, t_fdf *f)
 {

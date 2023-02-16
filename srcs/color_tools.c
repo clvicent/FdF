@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:17:19 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/14 13:13:01 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:58:11 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	shade_zero(t_fdf *f, int color)
 {
 	if (f->m.next_alt > f->m.alt_0)
-		return (get_rgb(255, splitter(color, 1), splitter(color, 2)));
+		return (get_rgb(255, spl(color, 1), spl(color, 2)));
 	if (f->m.next_alt < f->m.alt_0)
-		return (get_rgb(splitter(color, 2), splitter(color, 1), 255));
+		return (get_rgb(spl(color, 2), spl(color, 1), 255));
 	return (get_rgb(255, 255, 255));
 }
 
-int	splitter(int color, int flag)
+int	spl(int color, int flag)
 {
 	if (color >= 510)
 		return (255);

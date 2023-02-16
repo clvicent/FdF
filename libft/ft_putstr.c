@@ -6,15 +6,15 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:44:46 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 14:45:00 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:33:07 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr(char *s) // s
+int	ft_putstr(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])

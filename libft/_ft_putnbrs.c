@@ -6,13 +6,13 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:59:26 by clvicent          #+#    #+#             */
-/*   Updated: 2023/01/30 14:50:07 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:33:33 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putnbr_base(unsigned int n, char *b) // x X
+int	ft_putnbr_base(unsigned int n, char *b)
 {
 	unsigned int	s;
 	int				i;
@@ -31,9 +31,9 @@ int	ft_putnbr_base(unsigned int n, char *b) // x X
 		i++;
 	}
 	return (i);
-} 
+}
 
-int	ft_putnbr(int i) // i d
+int	ft_putnbr(int i)
 {
 	unsigned int	n;
 	int				c;
@@ -50,16 +50,16 @@ int	ft_putnbr(int i) // i d
 	if (n >= 10)
 	{
 		ft_putnbr(n / 10);
-		ft_putchar(n % 10);
+		ft_putchar(n % 10 + 48);
 		c++;
 	}
 	else
-		ft_putchar(n);
+		ft_putchar(n + 48);
 	c++;
 	return (c);
 }
 
-int	ft_putnbru(unsigned int i) // u
+int	ft_putnbru(unsigned int i)
 {
 	int				c;
 
