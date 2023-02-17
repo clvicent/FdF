@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:25:59 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/16 18:02:00 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:58:44 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@ int	get_zoom(t_fdf *f)
 	int	delta;
 
 	delta = f->m.max_alt - f->m.min_alt;
-	if (delta >= 200)
-		return (1);
-	zoom = 10;
-	while (zoom > 1)
+	zoom = 16;
+	while (f->l.true_y - (zoom * f->m.max_alt) < 0
+		|| (f->scy - f->l.true_y) - (zoom * f->m.min_alt) > f->scy)
 	{
-		if (f->l.true_y - (zoom * f->m.max_alt) < 0
-			|| (f->scy - f->l.true_y) - (zoom * f->m.min_alt) > f->scy)
-			zoom--;
-		else
-			return (zoom);
+		if (delta > 200)
+			zoom = 1;
+		if (zoom == 1)
+			break ;
+		zoom--;
 	}
 	return (zoom);
 }

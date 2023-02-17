@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:30:07 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/16 16:09:10 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:36:05 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int	exit_cross(t_fdf *f)
 {
-	shut_fdf(f, "shut by exit cross\n");
+	shut_fdf(f, "shut by exit cross\n", 1);
 	exit(0);
 }
 
 int	key_press(int keycode, t_fdf *f)
 {
 	ft_printf("key_press()         : %i\n", keycode);
-	if (keycode != 65307)
+	if (keycode == 65307)
+		shut_fdf(f, "shut by escape key\n", 1);
+	else
 		return (0);
-	shut_fdf(f, "shut by escape key\n");
 	exit (0);
 }
 

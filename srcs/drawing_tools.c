@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:22:53 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/15 17:01:32 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:03:45 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	draw_line(t_fdf *f, t_line *l)
 	er = l->dx + l->dy;
 	while (1)
 	{
-		if (l->x0 < f->scx && l->y0 < f->scy)
+		if (l->x0 < f->scx && l->y0 < f->scy
+			&& l->x0 >= 0 && l->y0 >= 0)
 			set_pix(f, l->x0, l->y0);
 		if (l->x0 == l->x1 && l->y0 == l->y1)
 			break ;

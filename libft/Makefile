@@ -6,7 +6,7 @@
 #    By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/01 16:26:04 by clvicent          #+#    #+#              #
-#    Updated: 2023/02/16 16:06:27 by clvicent         ###   ########.fr        #
+#    Updated: 2023/02/17 09:55:59 by clvicent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ _tab_filler.c \
 _ft_putstrs_fd.c \
 _printab.c \
 _ft_strslen.c \
-_check_ext.c
+_check_ext.c \
+_close_gnl.c
 
 
 SRCSB	= ft_lstnew.c \

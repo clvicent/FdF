@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:42:48 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/16 14:28:42 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:48:40 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,6 @@ void	set_alt(t_fdf *f)
 	f->l.zoom = get_zoom(f);
 }
 
-int	close_gnl(int fd)
-{
-	char	*line;
-
-	line = NULL;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		free(line);
-	}
-	return (close(fd));
-}
-
 int	wl_util(t_fdf *f, char **tmp, char *line, int y)
 {
 	if (f->m.size_x == 0)
@@ -88,9 +73,9 @@ int	wl_util(t_fdf *f, char **tmp, char *line, int y)
 	return (1);
 }
 
-void	shut_fdf(t_fdf *f, char *message)
+void	shut_fdf(t_fdf *f, char *message, int flag)
 {
-	if (f->tab)
+	if (f->tab && flag == 1)
 		free_tab(f->tab, f->m.size_y);
 	ft_putstr_fd(message, 1);
 	mlx_destroy_image(f->mlx, f->img.i_p);

@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 11:31:56 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/16 16:05:38 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:55:33 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int		ft_putstrs_fd(char **strs, int fd);
 void	printab(int **tab, int ylen, int xlen);
 int		ft_strslen(char **strs);
 int		check_ext(char *str, char *ext);
+int		close_gnl(int fd);
 
 // MATH
 int		ft_abs(int i);

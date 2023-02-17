@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/16 14:26:44 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:48:59 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # define SCY 1440
 # define OK 1
 # define END 2
+
+# define LEFT 65361
+# define UP 65362
+# define RIGHT 65363
+# define DOWN 65364
 
 # include "libft.h"
 # include "../mlx_linux/mlx.h"
@@ -95,9 +100,8 @@ int		get_n_col(char **str);
 //utils.c
 void	set_alt(t_fdf *f);
 void	struct_filler(t_fdf *f);
-int		close_gnl(int fd);
 int		wl_util(t_fdf *f, char **tmp, char *line, int y);
-void	shut_fdf(t_fdf *f, char *message);
+void	shut_fdf(t_fdf *f, char *message, int flag);
 
 //display_tools.c
 int		get_zoom(t_fdf *f);
