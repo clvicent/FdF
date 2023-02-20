@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:30:07 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/17 13:36:05 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:14:27 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	main(int ac, char **av)
 	ft_init(&f);
 	if (-1 == width_and_length(&f, av[1]))
 	{
-		shut_fdf(&f, "file error\n");
+		shut_fdf(&f, "file error\n", 1);
 		return (0);
 	}
 	l_c_size(&f);
 	if (f.l.half_height < 1 || f.l.half_width < 2)
 	{
-		shut_fdf(&f, "win too small, you should try 2560 * 1440\n");
+		shut_fdf(&f, "win too small, you should try 2560 * 1440\n", 1);
 		return (0);
 	}
 	struct_filler(&f);
