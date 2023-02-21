@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:42:50 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/16 16:07:16 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:11:32 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ int	check_ext(char *str, char *ext)
 	}
 	return (1);
 }
-
