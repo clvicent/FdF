@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:42:48 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/17 12:48:40 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:50:07 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	struct_filler(t_fdf *f)
 	f->l.true_x = ((f->scx - delta_x) / 2) + (f->m.size_y * f->l.half_width);
 	f->l.true_y = ((f->scy - delta_y) / 2);
 	set_alt(f);
+	if (check_tab(f) < 0)
+		shut_fdf(f, "alt too high/deep\n", 1);
 }
 
 void	set_alt(t_fdf *f)
@@ -61,7 +63,7 @@ int	wl_util(t_fdf *f, char **tmp, char *line, int y)
 		f->m.size_x = get_n_col(tmp);
 		f->tab = ft_gen_tab(f->m.size_x, f->m.size_y, 0);
 	}
-	else if (f->m.size_x != get_n_col(tmp) && y != f->m.size_y - 1)
+	else if (f->m.size_x != get_n_col(tmp) && y != f->m.size_y)
 	{
 		if (line)
 			free(line);
@@ -83,4 +85,5 @@ void	shut_fdf(t_fdf *f, char *message, int flag)
 	mlx_destroy_display(f->mlx);
 	if (f->mlx)
 		free(f->mlx);
+	exit (0);
 }

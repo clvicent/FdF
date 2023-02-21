@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:23:10 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/20 14:22:01 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:55:58 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	l_c_size(t_fdf *f)
 	int	delta;
 
 	delta = f->m.size_x + f->m.size_y - 2;
-	printf("f->m.size_x = %d\nf->m.size_y = %d\n", f->m.size_x, f->m.size_y);
 	f->m.size_p_x = (f->scx - 1) / f->m.size_x;
 	f->m.size_p_y = (f->scy - 1) / f->m.size_y;
 	if (f->m.size_p_x > f->m.size_p_y)
@@ -72,6 +71,8 @@ int	width_and_length(t_fdf *f, char *file)
 
 	f->m.size_y = get_file_len(file);
 	f->fd = open(file, O_RDONLY);
+	if (f->fd < 0 || f->fd > 1024)
+		shut_fdf(f, "", 0);
 	line = NULL;
 	y = 0;
 	while (y < f->m.size_y)

@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/17 12:48:59 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:38:25 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 // # define DEBUG 1
 // # define PAUSE    if (DEBUG) {getchar();};
 
-# define SCX 2560
-# define SCY 1440
+# define SCX 1920
+# define SCY 1080
 # define OK 1
 # define END 2
 
@@ -111,6 +111,7 @@ int		get_rgb(int r, int g, int b);
 
 //tab_tools.c
 void	get_pos(int x, int y, t_fdf *f);
+int		check_tab(t_fdf *f);
 
 //drawing_tools.c
 void	draw_grid(int x, int y, t_fdf *f);
