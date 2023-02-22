@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:29:21 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/21 16:38:43 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:41:48 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ int	check_tab(t_fdf *f)
 		y++;
 	}
 	return (0);
+}
+
+void	check_file(t_fdf *f)
+{
+	if (f->m.size_y == 0)
+		shut_fdf(f, "empty file\n", 0);
+	if (f->fd < 0 || f->fd > 1024)
+		shut_fdf(f, "", 0);
 }

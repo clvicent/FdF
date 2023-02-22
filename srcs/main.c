@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:30:07 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/21 16:51:26 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:19:22 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 	t_fdf	f;
 
 	if (ac != 2 || check_ext(av[1], ".fdf") != 1)
-		ft_putstr_fd("Usage : ./fdf <filename.fdf>\n", 1);
+		shut_fdf(&f, "Usage : ./fdf <filename.fdf>\n", 2);
 	ft_init(&f);
 	if (-1 == width_and_length(&f, av[1]))
 		shut_fdf(&f, "file error\n", 1);

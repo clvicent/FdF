@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:42:48 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/21 16:50:07 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:21:54 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,14 @@ void	shut_fdf(t_fdf *f, char *message, int flag)
 {
 	if (f->tab && flag == 1)
 		free_tab(f->tab, f->m.size_y);
-	ft_putstr_fd(message, 1);
-	mlx_destroy_image(f->mlx, f->img.i_p);
-	mlx_destroy_window(f->mlx, f->win);
-	mlx_destroy_display(f->mlx);
-	if (f->mlx)
-		free(f->mlx);
+	ft_putstr_fd(message, 2);
+	if (flag != 2)
+	{
+		mlx_destroy_image(f->mlx, f->img.i_p);
+		mlx_destroy_window(f->mlx, f->win);
+		mlx_destroy_display(f->mlx);
+		if (f->mlx)
+			free(f->mlx);
+	}
 	exit (0);
 }
