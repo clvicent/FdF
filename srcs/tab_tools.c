@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:29:21 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/22 18:41:48 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:22:52 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,47 @@ void	check_file(t_fdf *f)
 		shut_fdf(f, "empty file\n", 0);
 	if (f->fd < 0 || f->fd > 1024)
 		shut_fdf(f, "", 0);
+}
+
+int	atoi_fdf(const char *str)
+{
+	int			i;
+	int			neg;
+	long int	n;
+
+	i = 0;
+	neg = 1;
+	n = 0;
+	while ((str[i] <= 13 && str[i] >= 9) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			neg = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		n = n * 10 + (str[i++] - '0');
+	n *= neg;
+	return ((int)n);
+}
+
+void	fdf_tab_filler(t_fdf *f, char **data, char *line, int index)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (ft_strlen_chr(data[i], ',') > 8)
+		{
+			if (line)
+				free(line);
+			ft_exit(data);
+			close_gnl(f->fd);
+			shut_fdf(f, "alt too high/deep\n", 1);
+		}
+		f->tab[index][i] = atoi_fdf(data[i]);
+		i++;
+	}
 }

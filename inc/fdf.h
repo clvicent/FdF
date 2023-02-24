@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/22 18:41:37 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:23:21 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ int		get_rgb(int r, int g, int b);
 void	get_pos(int x, int y, t_fdf *f);
 int		check_tab(t_fdf *f);
 void	check_file(t_fdf *f);
+int		atoi_fdf(const char *str);
+void	fdf_tab_filler(t_fdf *f, char **data, char *line, int index);
 
 //drawing_tools.c
 void	draw_grid(int x, int y, t_fdf *f);

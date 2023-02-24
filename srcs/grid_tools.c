@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:23:10 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/22 18:41:23 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:21:40 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	width_and_length(t_fdf *f, char *file)
 		tmp = ft_split(line, ' ');
 		if (wl_util(f, tmp, line, y) == -1)
 			return (-1);
-		tab_filler(f->tab, tmp, y);
+		fdf_tab_filler(f, tmp, line, y);
 		free(line);
 		ft_exit(tmp);
 		y++;

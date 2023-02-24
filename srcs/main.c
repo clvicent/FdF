@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:30:07 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/22 18:19:22 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:26:34 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 		shut_fdf(&f, "Usage : ./fdf <filename.fdf>\n", 2);
 	ft_init(&f);
 	if (-1 == width_and_length(&f, av[1]))
-		shut_fdf(&f, "file error\n", 1);
+		shut_fdf(&f, "tab error\n", 1);
 	l_c_size(&f);
 	if (f.l.half_height < 1 || f.l.half_width < 2)
 		shut_fdf(&f, "win too small, you should try 2560 * 1440\n", 1);

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   _atoi_secu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 14:07:56 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/23 14:15:43 by clvicent         ###   ########.fr       */
+/*   Created: 2023/02/23 13:59:20 by clvicent          #+#    #+#             */
+/*   Updated: 2023/02/23 15:17:10 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	*atoi_secu(const char *str, int *nb)
 {
-	int	i;
-	int	neg;
-	int	nb;
+	int			i;
+	int			neg;
+	long int	n;
 
 	i = 0;
 	neg = 1;
-	nb = 0;
+	n = 0;
 	while ((str[i] <= 13 && str[i] >= 9) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -30,6 +30,10 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-		nb = nb * 10 + (str[i++] - '0');
-	return (nb * neg);
+		n = n * 10 + (str[i++] - '0');
+	n *= neg;
+	if (n > 2147483647 || n < -2147483648)
+		return (NULL);
+	*nb = (int)n;
+	return (nb);
 }
