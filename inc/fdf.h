@@ -6,7 +6,7 @@
 /*   By: clvicent <clvicent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:54:02 by clvicent          #+#    #+#             */
-/*   Updated: 2023/02/24 12:23:21 by clvicent         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:34:00 by clvicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define UP 65362
 # define RIGHT 65363
 # define DOWN 65364
+# define POS 65451
+# define NEG 65453
 
 # include "libft.h"
 # include "../mlx_linux/mlx.h"
@@ -134,5 +136,15 @@ int		prev_color(t_fdf *f);
 int		color_maker(t_fdf *f);
 int		final_color(float ratio, t_fdf *f);
 int		next_color(t_fdf *f);
+
+//hooks.c
+int		mouse_hook(int keycode, t_fdf *f);
+int		key_press(int keycode, t_fdf *f);
+void	translation(int keycode, t_fdf *f);
+
+//init.c
+void	init_env(t_fdf *f);
+void	init_mlx(t_fdf *f);
+void	init_img(t_fdf *f);
 
 #endif

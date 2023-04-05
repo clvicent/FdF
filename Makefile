@@ -17,7 +17,9 @@ SOURCES =   main.c \
 			drawing_tools.c \
 			tab_tools.c \
 			colors.c \
-			color_tools.c
+			color_tools.c \
+			hooks.c \
+			init.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
